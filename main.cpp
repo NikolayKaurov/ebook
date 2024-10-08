@@ -27,6 +27,7 @@ public:
             return 0;
         }
 
+        // Счётчик всех пользователей
         const auto user_counter = static_cast<double>(progress_.size());
 
         if (user_counter == 1) {
@@ -38,7 +39,14 @@ public:
 
 private:
     static constexpr int MAX_PAGE = 1000;
+
+    // Прогресс каждого пользователя - страница, которой он достиг.
+    // progress_[i] - страница, которой достиг пользователь i.
     std::unordered_map<int, int> progress_;
+
+    // Счётчик для каждой страницы - сколько пользователей её достигло, со смещением на единицу.
+    // reaching_counter_[0] - столько пользователей достигло страницы 1,
+    // reaching_counter_[1] - столько пользователей достигло страницы 2 и т. д.
     std::vector<int> reaching_counter_;
 };
 
